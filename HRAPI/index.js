@@ -32,14 +32,93 @@ app.get('/country',async(reg,res)=>{
         res.status(500).json({Error:err.message})
     }
 });
-app.get('/employee',async(reg,res)=>{
+
+
+
+app.get('/employee',async(req , res)=>{
     try{
-        const result = await pool.query('select count(employee_id)as total_employees from employees');
-        res.json(result.rows)
+          const result = await pool.query('select * from employees');
+          res.json(result.rows);
     }catch(err){
-        res.status(500).json({Error:err.message})
+        res.status(500).json({Error:err.message});
     }
 });
+
+
+app.get('/job',async(req , res)=>{
+    try{
+          const result = await pool.query('select *from jobs');
+          res.json(result.rows);
+    }catch(err){
+        res.status(500).json({Error:err.message});
+    }
+});
+app.get('/department',async(req , res)=>{
+    try{
+          const result = await pool.query('select *from departments');
+          res.json(result.rows);
+    }catch(err){
+        res.status(500).json({Error:err.message});
+    }
+});
+
+app.get('/location',async(req , res)=>{
+    try{
+          const result = await pool.query('select *from locations');
+          res.json(result.rows);
+    }catch(err){
+        res.status(500).json({Error:err.message});
+    }
+});
+app.get('/totalemp',async(req , res)=>{
+    try{
+          const result = await pool.query('select count(employee_id) from employees');
+          res.json(result.rows);
+    }catch(err){
+        res.status(500).json({Error:err.message});
+    }
+});
+app.get('/totalcrty',async(req , res)=>{
+    try{
+          const result = await pool.query('select count(country_id) from countries');
+          res.json(result.rows);
+    }catch(err){
+        res.status(500).json({Error:err.message});
+    }
+});
+app.get('/totaljob',async(req , res)=>{
+    try{
+          const result = await pool.query('select count(job_id)from jobs');
+          res.json(result.rows);
+    }catch(err){
+        res.status(500).json({Error:err.message});
+    }
+});
+app.get('/totaldepartment',async(req , res)=>{
+    try{
+          const result = await pool.query('select count(department_id)from departments');
+          res.json(result.rows);
+    }catch(err){
+        res.status(500).json({Error:err.message});
+    }
+});
+app.get('/totalregion',async(req , res)=>{
+    try{
+          const result = await pool.query('select count(region_id)from regions');
+          res.json(result.rows);
+    }catch(err){
+        res.status(500).json({Error:err.message});
+    }
+});
+app.get('/totallocation',async(req , res)=>{
+    try{
+          const result = await pool.query('select count(location_id)from departments');
+          res.json(result.rows);
+    }catch(err){
+        res.status(500).json({Error:err.message});
+    }
+});
+
 
 const PORT = process.env.PORT || 6005;
 app.listen(PORT,() => {
